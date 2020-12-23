@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "ohpick.co.kr",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "ohpick",
+            "database": "ohpick1",
+            "username": "ohpick1",
+            "password": "ohpick135"
+        }
+    ]
+}

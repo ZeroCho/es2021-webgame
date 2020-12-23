@@ -1,0 +1,105 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>가위바위보</title>
+  <style>
+    #computer {
+      width: 142px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="computer"></div>
+<div>
+  <button id="rock" class="btn">바위</button>
+  <button id="scissors" class="btn">가위</button>
+  <button id="paper" class="btn">보</button>
+</div>
+<div id="score"></div>
+<script>
+const $computer = document.querySelector('#computer');
+const $score = document.querySelector('#score');
+const $rock = document.querySelector('#rock');
+const $scissors = document.querySelector('#scissors');
+const $paper = document.querySelector('#paper');
+const IMG_URL = 'https://en.pimg.jp/023/182/267/1/23182267.jpg';
+$computer.style.background = `url(${IMG_URL}) 0 0`;
+
+const rspX = {
+  rock: '0', // 바위
+  scissors: '-142px', // 가위
+  paper: '-284px', // 보
+};
+
+let computerChoice = 'rock';
+const changeComputerHand = () => {
+  if (computerChoice === 'rock') {
+    computerChoice = 'scissors';
+  } else if (computerChoice === 'scissors') {
+    computerChoice = 'paper';
+  } else if (computerChoice === 'paper') {
+    computerChoice = 'rock';
+  }
+  $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+}
+let intervalId = setInterval(changeComputerHand, 50);
+
+// 가위: 1, 바위: 0, 보: -1
+// 나\컴퓨터  가위   바위    보
+//   가위      0     1      2
+//   바위     -1     0      1
+//   보       -2    -1      0
+const scoreTable = {
+  rock: 0,
+  scissors: 1,
+  paper: -1,
+};
+
+let clickable = true;
+let computer =  0;
+let me = 0;
+const clickButton = (event) => {
+  if (clickable) {
+    clearInterval(intervalId);
+    clickable = false;
+    const myChoice = event.target.textContent === '바위' 
+      ? 'rock' 
+      : event.target.textContent === '가위' 
+        ? 'scissors' 
+        : 'paper';
+    const myScore = scoreTable[myChoice];
+    const computerScore = scoreTable[computerChoice];
+    const diff = myScore - computerScore;
+    let message = '';
+    if ([2, -1].includes(diff)) {
+      me += 1;
+      message = '승리';
+    } else if ([-2, 1].includes(diff)) {
+      computer += 1;
+      message = '패배';
+    } else {
+      message = '무승부';
+    }
+    if (me === 3) {
+      $score.textContent = `나의 승리 ${me}:${computer}`;
+    } else if (computer === 3) {
+      $score.textContent = `컴퓨터의 승리 ${me}:${computer}`;
+    } else {
+      $score.textContent = `${message} ${me}:${computer}`;
+      setTimeout(() => {
+        clickable = true;
+        intervalId = setInterval(changeComputerHand, 50);
+      }, 1000);
+    }
+  }
+};
+$rock.addEventListener('click', clickButton);
+$scissors.addEventListener('click', clickButton);
+$paper.addEventListener('click', clickButton);
+</script>
+</body>
+
+</html>
