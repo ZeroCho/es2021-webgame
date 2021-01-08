@@ -27,16 +27,8 @@ const rows = [];
 let turn = 'O';
 
 const checkWinner = (target) => {
-  let rowIndex;
-  let cellIndex;
-  rows.forEach((row, ri) => {
-    row.forEach((cell, ci) => {
-      if (cell === target) {
-        rowIndex = ri;
-        cellIndex = ci;
-      }
-    });
-  });
+  const rowIndex = target.parentNode.rowIndex;
+  const cellIndex = target.cellIndex;
   // 세칸 다 채워졌나?
   let hasWinner = false;
   // 가로줄 검사
@@ -117,12 +109,12 @@ for (let i = 1; i <= 3; i += 1) {
   const cells = [];
   for (let j = 1; j <= 3; j += 1) {
     const $td = document.createElement('td');
-    $td.addEventListener('click', callback);
     cells.push($td);
     $tr.appendChild($td);
   }
   rows.push(cells);
   $table.appendChild($tr);
+  $table.addEventListener('click', callback);
 }
 body.appendChild($table);
 body.appendChild($result);

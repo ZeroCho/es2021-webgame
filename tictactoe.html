@@ -27,38 +27,38 @@ const rows = [];
 let turn = 'O';
 
 const checkWinner = (target) => {
-  const rowIndex = rows.indexOf(target.parentNode);
-  const cellIndex = cells[rowIndex].indexOf(target);
+  const rowIndex = target.parentNode.rowIndex;
+  const cellIndex = target.cellIndex;
   // 세칸 다 채워졌나?
   let hasWinner = false;
   // 가로줄 검사
   if (
-    cells[rowIndex][0].textContent === turn &&
-    cells[rowIndex][1].textContent === turn &&
-    cells[rowIndex][2].textContent === turn
+    rows[rowIndex][0].textContent === turn &&
+    rows[rowIndex][1].textContent === turn &&
+    rows[rowIndex][2].textContent === turn
   ) {
     hasWinner = true;
   }
   // 세로줄 검사
   if (
-    cells[0][cellIndex].textContent === turn &&
-    cells[1][cellIndex].textContent === turn &&
-    cells[2][cellIndex].textContent === turn
+    rows[0][cellIndex].textContent === turn &&
+    rows[1][cellIndex].textContent === turn &&
+    rows[2][cellIndex].textContent === turn
   ) {
     hasWinner = true;
   }
   // 대각선 검사
   if (
-    cells[0][0].textContent === turn &&
-    cells[1][1].textContent === turn &&
-    cells[2][2].textContent === turn
+    rows[0][0].textContent === turn &&
+    rows[1][1].textContent === turn &&
+    rows[2][2].textContent === turn
   ) {
     hasWinner = true;
   }
   if (
-    cells[0][2].textContent === turn &&
-    cells[1][1].textContent === turn &&
-    cells[2][0].textContent === turn
+    rows[0][2].textContent === turn &&
+    rows[1][1].textContent === turn &&
+    rows[2][0].textContent === turn
   ) {
     hasWinner = true;
   }
@@ -79,21 +79,12 @@ const callback = (event) => {
     return;
   }
   // 승자가 없으면
-  console.log(cells);
-  let draw = true;
-  rows.forEach((row) => {
-    row.forEach((cell) => {
-      if (!cell.textContent) {
-        draw = false;
-      }
-    });
-  });
-
-  const draw = cells.every((cell) => cell.textContent);
+  const draw = rows.flat().every((cell) => cell.textContent);
   if (draw) {
     $result.textContent = `무승부`;
     return;
   }
+
   turn = turn === 'X' ? 'O' : 'X';
 };
 
@@ -102,12 +93,12 @@ for (let i = 1; i <= 3; i += 1) {
   const cells = [];
   for (let j = 1; j <= 3; j += 1) {
     const $td = document.createElement('td');
-    $td.addEventListener('click', callback);
     cells.push($td);
     $tr.appendChild($td);
   }
   rows.push(cells);
   $table.appendChild($tr);
+  $table.addEventListener('click', callback);
 }
 body.appendChild($table);
 body.appendChild($result);
