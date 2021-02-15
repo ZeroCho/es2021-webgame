@@ -5,7 +5,7 @@
   <title>가위바위보</title>
   <style>
     #computer {
-      width: 142px;
+      width: 170px;
       height: 200px;
     }
   </style>
@@ -14,8 +14,8 @@
 <body>
 <div id="computer"></div>
 <div>
-  <button id="rock" class="btn">바위</button>
   <button id="scissors" class="btn">가위</button>
+  <button id="rock" class="btn">바위</button>
   <button id="paper" class="btn">보</button>
 </div>
 <div id="score"></div>
@@ -25,16 +25,17 @@ const $score = document.querySelector('#score');
 const $rock = document.querySelector('#rock');
 const $scissors = document.querySelector('#scissors');
 const $paper = document.querySelector('#paper');
-const IMG_URL = 'https://en.pimg.jp/023/182/267/1/23182267.jpg';
-$computer.style.background = `url(${IMG_URL}) 0 0`;
+const IMG_URL = './rsp.png';
+$computer.style.background = `url(${IMG_URL}) 0 0 no-repeat`;
+$computer.style.backgroundSize = 'auto 200px';
 
 const rspX = {
-  rock: '0', // 바위
-  scissors: '-142px', // 가위
-  paper: '-284px', // 보
+  scissors: '0', // 가위
+  rock: '-220px', // 가위
+  paper: '-440px', // 보
 };
 
-let computerChoice = 'rock';
+let computerChoice = 'scissors';
 const changeComputerHand = () => {
   if (computerChoice === 'rock') {
     computerChoice = 'scissors';
@@ -43,7 +44,8 @@ const changeComputerHand = () => {
   } else if (computerChoice === 'paper') {
     computerChoice = 'rock';
   }
-  $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+  $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0 no-repeat`;
+  $computer.style.backgroundSize = 'auto 200px';
 }
 let intervalId = setInterval(changeComputerHand, 50);
 
