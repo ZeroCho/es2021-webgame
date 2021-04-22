@@ -211,8 +211,8 @@ function moveCells(direction) {
   } else if (!data.flat().includes(0)) { // 빈 칸이 없으면 패배
     alert(`패배했습니다... ${$score.textContent}점`);
   } else {
-    put2ToRandomCell();
     draw();
+    put2ToRandomCell();
   }
 }
 window.addEventListener('keyup', (event) => {
