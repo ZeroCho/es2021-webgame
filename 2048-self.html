@@ -24,11 +24,25 @@
 </head>
 <body>
 <table id="table"></table>
-<div id="score">0</div>
+<div>
+  <span id="score">0</span>
+  <button id="back">되돌리기</button>
+</div>
 <script>
   const $table = document.getElementById('table');
   const $score = document.getElementById('score');
+  const $back = document.getElementById('back');
   let data = [];
+  const history = [];
+
+  $back.addEventListener('click', () => {
+    const prevData = history.pop();
+    if (!prevData) return; // 되돌릴 게 없으면 종료
+    $score.textContent = prevData.score;
+    data = prevData.table;
+    draw();
+  });
+
 
   // $table -> $fragment -> $tr -> $td
   function startGame() {
@@ -88,6 +102,10 @@
   // ];
   // draw();
   function moveCells(direction) {
+    history.push({
+      table: JSON.parse(JSON.stringify(data)),
+      score: $score.textContent,
+    });
     switch (direction) {
       case 'left': {
         const newData = [[], [], [], []];
@@ -233,6 +251,8 @@
       moveCells('up');
     } 
   });
+
+
 </script>
 </body>
 </html>

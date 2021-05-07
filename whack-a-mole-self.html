@@ -46,6 +46,7 @@
 <div>
   <span id="timer">8</span>초&nbsp;
   <span id="score">0</span>점
+  <span id="life">3</span>목숨
   <button id="start">시작</button>
 </div>
 <div id="game">
@@ -114,6 +115,7 @@
   const $timer = document.querySelector('#timer');
   const $score = document.querySelector('#score');
   const $game = document.querySelector('#game');
+  const $life = document.querySelector('#life');
   const $start = document.querySelector('#start');
   const $$cells = document.querySelectorAll('.cell');
 
@@ -121,12 +123,15 @@
   let started = false;
   let score = 0;
   let time = 60;
+  let life = 3;
+  let timerId;
+  let tickId;
 
   $start.addEventListener('click', () => {
     if (started) return; // 이미 시작했으면 무시
     started = true;
     console.log('시작');
-    const timerId = setInterval(() => {
+    timerId = setInterval(() => {
       time = (time * 10 - 1) / 10; // 소수점 계산 시 문제있음
       $timer.textContent = time;
       if (time === 0) {
@@ -137,7 +142,7 @@
         }, 50);
       }
     }, 100);
-    const tickId = setInterval(tick, 1000);
+    tickId = setInterval(tick, 1000);
     tick();
   });
 
@@ -191,6 +196,15 @@
         holes[index] = 0;
         event.target.classList.remove('boom');
       }, 1000);
+      life--;
+      $life.textContent = life;
+      if (life === 0) {
+        clearInterval(timerId);
+        clearInterval(tickId);
+        setTimeout(() => {
+          alert(`게임 오버! 점수는${score}점`);
+        }, 50);
+      }
     });
   });
 </script>
