@@ -120,7 +120,14 @@
       clickable = true;
     }, 500);
   }
-
+  
+  function resetGame() {
+    $wrapper.innerHTML = '';
+    colorCopy = colors.concat(colors);
+    shuffled = [];
+    completed = [];
+    startGame();
+  }
   function startGame() {
     clickable = false;
     shuffle();
@@ -145,14 +152,6 @@
     }, 5000);
   }
   startGame();
-
-  function resetGame() {
-    $wrapper.innerHTML = '';
-    colorCopy = colors.concat(colors);
-    shuffled = [];
-    completed = [];
-    startGame();
-  }
 </script>
 </body>
 </html>
