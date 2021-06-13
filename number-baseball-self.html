@@ -50,9 +50,8 @@
     event.preventDefault();
     const value = $input.value;
     $input.value = '';
-    if (!checkInput(value)) {
-      return;
-    }
+    const valid = checkInput(value);
+    if (!valid) return;
     // 입력값 문제없음
     if (answer.join('') === value) { // [3, 1, 4, 6] -> '3146'
       $logs.textContent = '홈런!';
