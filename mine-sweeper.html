@@ -190,7 +190,7 @@ function onLeftClick(event) {
   const target = event.target; // td 태그겠죠?
   const rowIndex = target.parentNode.rowIndex;
   const cellIndex = target.cellIndex;
-  let cellData = data[rowIndex][cellIndex];
+  const cellData = data[rowIndex][cellIndex];
   if (cellData === CODE.NORMAL) { // 닫힌 칸이면
     openAround(rowIndex, cellIndex);
   } else if (cellData === CODE.MINE) { // 지뢰 칸이면
