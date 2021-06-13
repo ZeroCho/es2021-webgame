@@ -113,7 +113,7 @@ function onRightClick(event) {
   } else if (cellData === CODE.FLAG_MINE) { // 깃발 지뢰면
     data[rowIndex][cellIndex] = CODE.MINE; // 지뢰로
     target.className = '';
-    // target.textContent = 'X';
+    target.textContent = '';
   } else if (cellData === CODE.NORMAL) { // 닫힌 칸이면
     data[rowIndex][cellIndex] = CODE.QUESTION; // 물음표로
     target.className = 'question';
