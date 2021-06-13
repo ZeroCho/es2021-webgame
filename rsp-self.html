@@ -36,12 +36,12 @@
 
   let computerChoice = 'scissors';
   const changeComputerHand = () => {
-    if (computerChoice === 'scissors') { // 가위면
-      computerChoice = 'rock';
-    } else if (computerChoice === 'rock') { // 바위
-      computerChoice = 'paper';
-    } else { // 보
+    if (computerChoice === 'rock') { // 바위면
       computerChoice = 'scissors';
+    } else if (computerChoice === 'scissors') { // 가위면
+      computerChoice = 'paper';
+    } else if (computerChoice === 'paper') { // 보면
+      computerChoice = 'rock';
     }
     $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
     $computer.style.backgroundSize = 'auto 200px';
