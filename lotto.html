@@ -35,17 +35,15 @@
   console.log(winBalls, bonus);
 
   const $result = document.querySelector('#result');
-
   const drawBall = (number, $parent) => {
     const $ball = document.createElement('div');
     $ball.className = 'ball';
     $ball.textContent = number;
     $parent.appendChild($ball);
   };
-  // [0, 1, 2, 3, 4, 5] -> [1000, 2000, 3000, 4000, 5000, 6000]
+
   for (let i = 0; i < winBalls.length; i++) {
     setTimeout(() => {
-      console.log(winBalls[i], i);
       drawBall(winBalls[i], $result);
     }, (i + 1) * 1000);
   }
