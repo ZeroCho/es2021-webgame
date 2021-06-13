@@ -121,10 +121,10 @@
     // 승부 판단하기
     checkWinnerAndDraw(event.target);
     if (turn === 'X') {
+      const emptyCells = rows.flat().filter((v) => !v.textContent);
+      const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
       clickable = false;
       setTimeout(() => {
-        const emptyCells = rows.flat().filter((v) => !v.textContent);
-        const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
         randomCell.textContent = 'X';
         checkWinnerAndDraw(randomCell);
         clickable = true;
