@@ -59,6 +59,9 @@ function onSubmit(event) {
   cell = parseInt(event.target.cell.value);
   mine = parseInt(event.target.mine.value);
   openCount = 0;
+  normalCellFound = false;
+  searched = null;
+  firstClick = true;
   clearInterval(interval);
   $tbody.innerHTML = '';
   drawTable();

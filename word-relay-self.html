@@ -24,7 +24,7 @@
     let newWord; // 새로 입력한 단어
 
     const onClickButton = () => {
-      if (!word || (word[word.length - 1] === newWord[0] && newWord.length === 3)) { // 제시어가 비어 있는가?
+      if (newWord.length === 3 && (!word || word[word.length - 1] === newWord[0])) { // 제시어가 비어 있는가?
         // 비어 있다.
         word = newWord; // 입력한 단어가 제시어가 된다.
         $word.textContent = word;
