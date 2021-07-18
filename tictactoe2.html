@@ -104,10 +104,10 @@ const callback = (event) => {
   }
 };
 
-for (let i = 1; i <= 3; i += 1) {
+for (let i = 1; i <= 3; i++) {
   const $tr = document.createElement('tr');
   const cells = [];
-  for (let j = 1; j <= 3; j += 1) {
+  for (let j = 1; j <= 3; j++) {
     const $td = document.createElement('td');
     cells.push($td);
     $tr.appendChild($td);

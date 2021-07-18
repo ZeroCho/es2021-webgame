@@ -34,8 +34,8 @@
   let endTime;
   const records = [];
   let timeoutId;
-  $screen.addEventListener('click', (event) => {
-    if (event.target.classList.contains('waiting')) { // 파랑
+  $screen.addEventListener('click', function () {
+    if ($screen.classList.contains('waiting')) { // 파랑
       $screen.classList.remove('waiting');
       $screen.classList.add('ready');
       $screen.textContent = '초록색이 되면 클릭하세요';
@@ -45,12 +45,12 @@
         $screen.classList.add('now');
         $screen.textContent = '클릭하세요!';
       }, Math.floor(Math.random() * 1000) + 2000); // 2초에서 3초 사이 2000~3000 사이 수
-    } else if (event.target.classList.contains('ready')) { // 빨강
+    } else if ($screen.classList.contains('ready')) { // 빨강
       clearTimeout(timeoutId);
       $screen.classList.remove('ready');
       $screen.classList.add('waiting');
       $screen.textContent = '너무 성급하시군요!';
-    } else if (event.target.classList.contains('now')) { // 초록
+    } else if ($screen.classList.contains('now')) { // 초록
       endTime = new Date();
       const current = endTime - startTime;
       records.push(current);

@@ -49,7 +49,7 @@ const CODE = {
   OPENED: 0, // 0 이상이면 다모두 열린 칸
 };
 let data;
-let openCount;
+let openCount = 0;
 let startTime;
 let interval;
 
@@ -60,7 +60,11 @@ function onSubmit(event) {
   mine = parseInt(event.target.mine.value);
   openCount = 0;
   normalCellFound = false;
+<<<<<<< HEAD
   searched = null;
+=======
+  searched;
+>>>>>>> 5cdf6ceb4b168c715ceaefc7133a2463816037ea
   firstClick = true;
   clearInterval(interval);
   $tbody.innerHTML = '';
@@ -116,7 +120,7 @@ function onRightClick(event) {
   } else if (cellData === CODE.FLAG_MINE) { // 깃발 지뢰면
     data[rowIndex][cellIndex] = CODE.MINE; // 지뢰로
     target.className = '';
-    // target.textContent = 'X';
+    target.textContent = '';
   } else if (cellData === CODE.NORMAL) { // 닫힌 칸이면
     data[rowIndex][cellIndex] = CODE.QUESTION; // 물음표로
     target.className = 'question';
