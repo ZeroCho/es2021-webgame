@@ -58,7 +58,7 @@
   //  그 다음에 버튼을 클릭하면 5번만 취소
   let clickable = true;
   let score = 0;
-  const clickButton = () => {
+  const clickButton = (event) => {
     if (clickable) {
       clearInterval(intervalId);
       clickable = false;
