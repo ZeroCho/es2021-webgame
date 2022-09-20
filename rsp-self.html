@@ -59,7 +59,7 @@
   let clickable = true;
   let computer = 0;
   let me = 0;
-  const clickButton = () => {
+  const clickButton = (event) => {
     if (clickable) {
       clearInterval(intervalId);
       clickable = false;
